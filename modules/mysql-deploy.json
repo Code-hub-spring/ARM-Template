@@ -19,8 +19,8 @@
           "family": "B"
         },
         "properties": {
-          "administratorLogin": "mysqladmin",
-          "administratorLoginPassword": "SecureP@ssword123!",  // Replace or parameterize
+          "administratorLogin": "vtcnsxqomm",
+          "administratorLoginPassword": "Mysql_123",  // Replace or parameterize
           "version": "5.7",
           "storage": {
             "storageSizeGB": 20
