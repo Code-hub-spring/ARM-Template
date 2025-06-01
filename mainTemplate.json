@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "frontendName": {
+      "type": "string"
+    },
+    "functionAppName": {
+      "type": "string"
+    },
+    "vmName": {
+      "type": "string"
+    },
+    "mysqlServerName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "frontendDeployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/frontend-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "frontendName": {
+            "value": "[parameters('frontendName')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "functionDeployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/function-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "functionAppName": {
+            "value": "[parameters('functionAppName')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "vmDeployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/vm-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "vmName": {
+            "value": "[parameters('vmName')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "mysqlDeployment",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/mysql-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "mysqlServerName": {
+            "value": "[parameters('mysqlServerName')]"
+          }
+        }
+      }
+    }
+  ]
+}

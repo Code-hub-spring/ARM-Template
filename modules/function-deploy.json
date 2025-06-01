@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "functionAppName": {
+        "type": "string"
+      }
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Web/sites",
+        "apiVersion": "2022-03-01",
+        "name": "[parameters('functionAppName')]",
+        "location": "[resourceGroup().location]",
+        "kind": "functionapp",
+        "properties": {
+          "siteConfig": {
+            "appSettings": [
+              {
+                "name": "FUNCTIONS_WORKER_RUNTIME",
+                "value": "node"  // or "python", depending on your code
+              },
+              {
+                "name": "WEBSITE_RUN_FROM_PACKAGE",
+                "value": "1"
+              }
+            ]
+          },
+          "httpsOnly": true
+        },
+        "dependsOn": []
+      }
+    ]
+  }
+  
