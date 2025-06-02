@@ -25,7 +25,7 @@
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "azureuser",
-          "adminPassword": "YourP@ssw0rd123!"  // Replace this or parameterize for security
+          "adminPassword": "azure_password"  
         },
         "storageProfile": {
           "imageReference": {
