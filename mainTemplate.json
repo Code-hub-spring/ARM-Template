@@ -8,9 +8,6 @@
     "functionAppName": {
       "type": "string"
     },
-    "vmName": {
-      "type": "string"
-    },
     "mysqlServerName": {
       "type": "string"
     }
@@ -23,7 +20,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/frontend-deploy.json')]",
+          "uri": "https://raw.githubusercontent.com/Code-hub-spring/ARM-Template/main/modules/frontend-deploy.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -40,7 +37,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/function-deploy.json')]",
+          "uri": "https://raw.githubusercontent.com/Code-hub-spring/ARM-Template/main/modules/function-deploy.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -53,28 +50,11 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
-      "name": "vmDeployment",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/vm-deploy.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "vmName": {
-            "value": "[parameters('vmName')]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
       "name": "mysqlDeployment",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(deployment().properties.templateLink.uri, 'modules/mysql-deploy.json')]",
+          "uri": "https://raw.githubusercontent.com/Code-hub-spring/ARM-Template/main/modules/mysql-deploy.json",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
